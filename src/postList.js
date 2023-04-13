@@ -1,29 +1,32 @@
 import React, { useContext } from 'react';
-import './style.css';
 import { Cart } from './context';
+import './style.css';
 
-export default function postList() {
-  const {post} = useContext(Cart);
-  
+export default function PostList() {
+  const { post } = useContext(Cart);
+
   return (
     <div>
-      {post.length &&
-        post.map((e) => (
-          <table>
+      {post.length > 0 && (
+        <table>
+          <thead>
             <tr>
-              <th>UseId</th>
+              <th>UserId</th>
               <th>Id</th>
               <th>Title</th>
             </tr>
-            <tr>
-              <td>{e.userId}</td>
-              <td>{e.id}</td>
-              <td>{e.title}</td>
-
-
-            </tr>
-          </table>
-        ))}
+          </thead>
+          <tbody>
+            {post.map((p) => (
+              <tr key={p.id}>
+                <td>{p.userId}</td>
+                <td>{p.id}</td>
+                <td>{p.title}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )}
     </div>
   );
 }
